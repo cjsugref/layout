@@ -3,9 +3,7 @@ library(bslib)
 library(data.table)
 
 source('functions.R')
-
 data_versions <- data_versions_lists()
-
 
 ui <- (navbarPage(
   "DE",
@@ -18,12 +16,13 @@ ui <- (navbarPage(
     "Tools",
     sidebarLayout(
       sidebarPanel(
-        selectInput("file", "Choose TY", data_versions),
+        selectInput("chosen_file", "Choose TY", data_versions),
       ),
       mainPanel(
         tabsetPanel(
           tabPanel(
-            "Graphs"
+            "Graphs",
+            tableOutput("data_versions_dt")
           ),
           tabPanel(
             "Tables"
@@ -39,7 +38,6 @@ ui <- (navbarPage(
   ))
 )
 server <- function(input, output, session) {
-
 }
 
 shinyApp(ui, server)
